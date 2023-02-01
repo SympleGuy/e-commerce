@@ -10,11 +10,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Products from "./routes/Products";
-import Customers from "./routes/Customers";
+import Products from "./admin/routes/Products";
+import Customers from "./admin/routes/Customers";
 import App from "./App";
-import Home from "./routes/Home";
-import LoginPage from "./pages/LoginPage";
+import Home from "./admin/routes/Home";
+import LoginPage from "./admin/pages/LoginPage";
 
 // const router = createBrowserRouter(
 //     createRoutesFromElements(
