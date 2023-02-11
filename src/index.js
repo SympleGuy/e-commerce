@@ -12,9 +12,10 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Products from "./admin/routes/Products";
 import Customers from "./admin/routes/Customers";
-import App from "./App";
+import App from "./admin/App";
 import Home from "./admin/routes/Home";
 import LoginPage from "./admin/pages/LoginPage";
+import Page from "./client/Page";
 
 // const router = createBrowserRouter(
 //     createRoutesFromElements(
@@ -28,10 +29,14 @@ import LoginPage from "./admin/pages/LoginPage";
 
 const router = createBrowserRouter([
     {
+        path: "/",
+        element: <Page />
+    },
+    {
         element: <App />,
         children: [
             {
-                path: "/",
+                path: "/admin",
                 element: <Home />
             },
             {

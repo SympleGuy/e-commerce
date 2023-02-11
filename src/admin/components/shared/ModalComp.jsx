@@ -20,8 +20,6 @@ const ModalComp = ({ children, closeModal, openModal }) => {
     return (
         <div>
             <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
                 open={openModal}
                 onClose={closeModal}
                 closeAfterTransition

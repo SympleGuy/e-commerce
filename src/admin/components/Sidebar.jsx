@@ -75,13 +75,13 @@ const Sidebar = ({ handleDrawerClose, open, theme }) => {
                 <Divider />
                 <List>
                     <ListItem disablePadding>
-                        <Link to="/" style={LinkStyle}>
+                        <Link to="/admin" style={LinkStyle}>
                             <ListItemButton
                                 onClick={(event) => {
                                     // handleDrawerClose();
-                                    selectedHandle(event, "/");
+                                    selectedHandle(event, "/admin");
                                 }}
-                                selected={selectedPath === "/"}
+                                selected={selectedPath === "/admin"}
                                 sx={{
                                     "&.Mui-selected": {
                                         "&:hover": {

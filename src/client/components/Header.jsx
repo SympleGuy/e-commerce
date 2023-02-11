@@ -11,35 +11,23 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-
-const pages = ["Products", "Pricing", "Blog"];
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
+const pages = ["Women", "Men", "Collection", "Outlet"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky" sx={{ bgcolor: "#4C7383" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
+                    <StoreMallDirectoryIcon
                         sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                     />
                     <Typography
@@ -57,7 +45,7 @@ function ResponsiveAppBar() {
                             textDecoration: "none"
                         }}
                     >
-                        LOGO
+                        Clothes
                     </Typography>
 
                     <Box
@@ -89,16 +77,12 @@ function ResponsiveAppBar() {
                                 horizontal: "left"
                             }}
                             open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
                             sx={{
                                 display: { xs: "block", md: "none" }
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                >
+                                <MenuItem key={page}>
                                     <Typography textAlign="center">
                                         {page}
                                     </Typography>
@@ -106,7 +90,7 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon
+                    <StoreMallDirectoryIcon
                         sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
                     />
                     <Typography
@@ -125,8 +109,9 @@ function ResponsiveAppBar() {
                             textDecoration: "none"
                         }}
                     >
-                        LOGO
+                        Clothes
                     </Typography>
+                    {/* Menu Nav */}
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -136,7 +121,6 @@ function ResponsiveAppBar() {
                         {pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: "white", display: "block" }}
                             >
                                 {page}
@@ -144,45 +128,17 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
-                            >
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
-                                />
+                    <Box sx={{ flexGrow: 0 }} gap="0 30px" display="flex">
+                        <Tooltip title="Cart" components="a" href="/cart">
+                            <IconButton sx={{ p: 0, color: "#fff" }}>
+                                <ShoppingCartIcon />
                             </IconButton>
                         </Tooltip>
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right"
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right"
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        <Tooltip title="Open settings">
+                            <IconButton sx={{ p: 0 }}>
+                                <Avatar />
+                            </IconButton>
+                        </Tooltip>
                     </Box>
                 </Toolbar>
             </Container>
