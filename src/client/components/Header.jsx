@@ -7,22 +7,42 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
-const pages = ["Women", "Men", "Collection", "Outlet"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { NavLink } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+const pages = [
+    {
+        id: uuidv4(),
+        title: "Women",
+        link: "/women"
+    },
+    {
+        id: uuidv4(),
+        title: "Men",
+        link: "/men"
+    },
+    {
+        id: uuidv4(),
+        title: "Outlet",
+        link: "/outlet"
+    },
+    {
+        id: uuidv4(),
+        title: "Collection",
+        link: "/collection"
+    }
+];
 
-function ResponsiveAppBar() {
+function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-
     return (
         <AppBar position="sticky" sx={{ bgcolor: "#4C7383" }}>
             <Container maxWidth="xl">
@@ -82,10 +102,12 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page}>
-                                    <Typography textAlign="center">
-                                        {page}
-                                    </Typography>
+                                <MenuItem key={page.id}>
+                                    <NavLink to={page.link}>
+                                        <Typography textAlign="center">
+                                            {page.title}
+                                        </Typography>
+                                    </NavLink>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -120,10 +142,20 @@ function ResponsiveAppBar() {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.id}
                                 sx={{ my: 2, color: "white", display: "block" }}
                             >
-                                {page}
+                                <NavLink
+                                    to={page.link}
+                                    style={{
+                                        color: "inherit",
+                                        textDecoration: "none"
+                                    }}
+                                >
+                                    <Typography textAlign="center">
+                                        {page.title}
+                                    </Typography>
+                                </NavLink>
                             </Button>
                         ))}
                     </Box>
@@ -134,15 +166,10 @@ function ResponsiveAppBar() {
                                 <ShoppingCartIcon />
                             </IconButton>
                         </Tooltip>
-                        <Tooltip title="Open settings">
-                            <IconButton sx={{ p: 0 }}>
-                                <Avatar />
-                            </IconButton>
-                        </Tooltip>
                     </Box>
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
-export default ResponsiveAppBar;
+export default Header;

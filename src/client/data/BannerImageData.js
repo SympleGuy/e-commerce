@@ -75,24 +75,24 @@ export const bestSellers = [
         id: 1,
         title: "Marie Claire Handbag",
         price: "$365",
-        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/handbag.png"
+        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/red-tshirt.png"
     },
     {
         id: 2,
         title: "Red Gem Earrings",
         price: "$466",
-        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/earrings.png"
+        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/purple-tshirt.png"
     },
     {
         id: 3,
         title: "Black Leathered Wristwatch",
         price: "$745",
-        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/lathered-wristwatch.png"
+        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/orange-tshirt.png"
     },
     {
         id: 4,
         title: "Red-White Stripped Tie",
         price: "$243",
-        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/tie.png"
+        image: "https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/pink-tshirt.png"
     }
 ];

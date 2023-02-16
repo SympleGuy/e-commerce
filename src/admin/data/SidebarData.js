@@ -2,29 +2,38 @@ import CheckroomIcon from "@mui/icons-material/Checkroom";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import SellIcon from "@mui/icons-material/Sell";
 export const SidebarData = [
     {
         title: "Products",
         path: "/products",
-        icon: <CheckroomIcon />,
-        selected: 1
+        icon: <CheckroomIcon />
     },
     {
         title: "Customers",
         path: "/customers",
-        icon: <PeopleAltIcon />,
-        selected: 2
+        icon: <PeopleAltIcon />
     },
     {
         title: "Users",
         path: "/users",
-        icon: <PersonIcon />,
-        selected: 3
+        icon: <PersonIcon />
     },
     {
-        title: "Purchases",
-        path: "/purchases",
-        icon: <ShoppingCartIcon />,
-        selected: 4
+        title: "Attributes",
+        path: "/attributes",
+        icon: <ColorLensIcon />
+    },
+    {
+        title: "Photos",
+        path: "/photos",
+        icon: <InsertPhotoIcon />
+    },
+    {
+        title: "Orders",
+        path: "/orders",
+        icon: <SellIcon />
     }
 ];

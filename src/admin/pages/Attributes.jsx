@@ -10,10 +10,10 @@ import { Box } from "@mui/material";
 import TableHeader from "../components/shared/TableHeader";
 import ButtonComp from "../components/shared/ButtonComp";
 import ModalComp from "../components/shared/ModalComp";
-import AddProduct from "../components/form/AddProduct";
+import AddAttribute from "../components/form/AddAttribute";
 const drawerWidth = GlobalData.sidebarWidth;
 
-const Products = styled("products", {
+const Attributes = styled("attributes", {
     shouldForwardProp: (prop) => prop !== "open"
 })(({ theme, open }) => ({
     flexGrow: 1,
@@ -32,20 +32,20 @@ const Products = styled("products", {
     })
 }));
 
-const ProductsHeader = styled("div")(({ theme }) => ({
+const AttributesHeader = styled("div")(({ theme }) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
     // padding: "40px"
 }));
 
-const ProductsRoute = ({ open }) => {
+const AttributesRoute = ({ open }) => {
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
     open = useOutletContext();
     return (
-        <Products open={open}>
-            <ProductsHeader />
+        <Attributes open={open}>
+            <AttributesHeader />
             <Box
                 mb="30px"
                 display="flex"
@@ -53,18 +53,22 @@ const ProductsRoute = ({ open }) => {
                 alignItems="end"
             >
                 <TableHeader
-                    title={"Products List"}
-                    subtitle={"This is a product table"}
+                    title={"Attributes List"}
+                    subtitle={"Add/Update Color Attribute"}
                 />
                 <ButtonComp onCLickEv={handleOpen} variant="contained" onClick>
-                    Add Product
+                    Add Attribute
                 </ButtonComp>
             </Box>
-            <ModalComp closeModal={handleClose} openModal={openModal}>
-                <AddProduct />
+            <ModalComp
+                width="30vw"
+                closeModal={handleClose}
+                openModal={openModal}
+            >
+                <AddAttribute />
             </ModalComp>
             <TableComp col={productCol} rowData={productData} />
-        </Products>
+        </Attributes>
     );
 };
-export default ProductsRoute;
+export default AttributesRoute;

@@ -8,7 +8,7 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "80vw",
+    // width: "80vw",
     bgcolor: "background.paper",
     // border: "2px solid #000",
     borderRadius: 3,
@@ -16,7 +16,7 @@ const style = {
     // p: 4
 };
 
-const ModalComp = ({ children, closeModal, openModal }) => {
+const ModalComp = ({ children, closeModal, openModal, width }) => {
     return (
         <div>
             <Modal
@@ -26,7 +26,9 @@ const ModalComp = ({ children, closeModal, openModal }) => {
                 keepMounted
             >
                 <Fade in={openModal}>
-                    <Box sx={style}>{children}</Box>
+                    <Box width={width} sx={style}>
+                        {children}
+                    </Box>
                 </Fade>
             </Modal>
         </div>

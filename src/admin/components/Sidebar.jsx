@@ -30,14 +30,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const Sidebar = ({ handleDrawerClose, open, theme }) => {
     const location = useLocation();
+    const [selectedPath, setSelectedPath] = React.useState(location.pathname);
     React.useEffect(() => {
         window.onpopstate = (e) => {
             setSelectedPath(location.pathname);
         };
     });
-    const [selectedPath, setSelectedPath] = React.useState(location.pathname);
     const selectedHandle = (event, location) => {
         setSelectedPath(location);
+        console.log(location);
     };
     return (
         <React.Fragment>

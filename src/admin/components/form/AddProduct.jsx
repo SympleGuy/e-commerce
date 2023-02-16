@@ -1,7 +1,7 @@
 import { TextField, Grid, Typography, Divider, Stack } from "@mui/material";
 import ButtonComp from "../shared/ButtonComp";
 
-const AddProduct = () => {
+const AddProduct = ({ closeModal }) => {
     return (
         <>
             <Typography p={2} variant="h5">
@@ -54,7 +54,11 @@ const AddProduct = () => {
                     spacing={2}
                     justifyContent="flex-end"
                 >
-                    <ButtonComp color="error" variant="contained">
+                    <ButtonComp
+                        onCLickEv={closeModal}
+                        color="error"
+                        variant="contained"
+                    >
                         Cancel
                     </ButtonComp>
                     <ButtonComp variant="contained">Save</ButtonComp>

@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
-export default function App() {
+export default function AdminPage() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
 
@@ -17,8 +17,8 @@ export default function App() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
-    return (
+    let auth = { token: true };
+    return auth.token ? (
         <Box sx={{ display: "flex" }}>
             <CssBaseline />
             <Header handleDrawerOpen={handleDrawerOpen} open={open} />
@@ -29,8 +29,7 @@ export default function App() {
             />
             <Outlet context={open} />
         </Box>
-        // <Box>
-        //     <Header />
-        // </Box>
+    ) : (
+        <Navigate to="/login" />
     );
 }
