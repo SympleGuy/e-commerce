@@ -11,9 +11,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Badge } from "@mui/material";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+import { cartItemsCountSelector } from "./Cart/selector";
 const pages = [
     {
         id: uuidv4(),
@@ -24,20 +28,15 @@ const pages = [
         id: uuidv4(),
         title: "Men",
         link: "/men"
-    },
-    {
-        id: uuidv4(),
-        title: "Outlet",
-        link: "/outlet"
-    },
-    {
-        id: uuidv4(),
-        title: "Collection",
-        link: "/collection"
     }
 ];
 
 function Header() {
+    const navigate = useNavigate();
+    const handleCartClick = () => {
+        navigate("/cart");
+    };
+    const cartItemsCount = useSelector(cartItemsCountSelector);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -65,7 +64,7 @@ function Header() {
                             textDecoration: "none"
                         }}
                     >
-                        Clothes
+                        Kiwi
                     </Typography>
 
                     <Box
@@ -112,9 +111,15 @@ function Header() {
                             ))}
                         </Menu>
                     </Box>
-                    <StoreMallDirectoryIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-                    />
+                    <IconButton>
+                        <StoreMallDirectoryIcon
+                            sx={{
+                                display: { xs: "flex", md: "none" },
+                                mr: 1
+                            }}
+                        />
+                    </IconButton>
+
                     <Typography
                         variant="h5"
                         noWrap
@@ -131,7 +136,7 @@ function Header() {
                             textDecoration: "none"
                         }}
                     >
-                        Clothes
+                        Kiwi
                     </Typography>
                     {/* Menu Nav */}
                     <Box
@@ -162,8 +167,16 @@ function Header() {
 
                     <Box sx={{ flexGrow: 0 }} gap="0 30px" display="flex">
                         <Tooltip title="Cart" components="a" href="/cart">
-                            <IconButton sx={{ p: 0, color: "#fff" }}>
-                                <ShoppingCartIcon />
+                            <IconButton
+                                sx={{ p: 0, color: "#fff" }}
+                                onClick={handleCartClick}
+                            >
+                                <Badge
+                                    badgeContent={cartItemsCount}
+                                    color="error"
+                                >
+                                    <ShoppingCartIcon />
+                                </Badge>
                             </IconButton>
                         </Tooltip>
                     </Box>

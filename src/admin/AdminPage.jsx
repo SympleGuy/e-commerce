@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Navigate, Outlet } from "react-router";
 
-export default function AdminPage() {
+export default function AdminPage({ token }) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
 
@@ -17,7 +17,7 @@ export default function AdminPage() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    let auth = { token: true };
+    let auth = { token: token };
     return auth.token ? (
         <Box sx={{ display: "flex" }}>
             <CssBaseline />

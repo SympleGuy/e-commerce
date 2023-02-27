@@ -40,7 +40,6 @@ const HomeRoute = ({ open }) => {
         <Main open={open}>
             <MainHeader />
             <CardDisplay />
-            <TableComp col={productCol} rowData={productData} />
         </Main>
     );
 };

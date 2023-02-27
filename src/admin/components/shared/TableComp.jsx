@@ -11,7 +11,6 @@ const TableComp = ({ col, rowData }) => {
                     components={{
                         Toolbar: GridToolbar
                     }}
-                    checkboxSelection
                 />
             </Box>
         </Box>

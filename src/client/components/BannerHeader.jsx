@@ -1,4 +1,6 @@
 import { Typography, Box, Card, Grid, CardMedia, Button } from "@mui/material";
+import { useNavigate } from "react-router";
+
 const ButtonStyles = {
     position: "absolute",
     top: "50%",
@@ -14,6 +16,16 @@ const ButtonStyles = {
     }
 };
 const BannerHeader = () => {
+    const navigate = useNavigate();
+
+    const redirectToMenPage = () => {
+        navigate("/men");
+    };
+
+    const redirectToFemalePage = () => {
+        navigate("/women");
+    };
+
     return (
         <Box>
             <Box mb={10}>
@@ -48,7 +60,11 @@ const BannerHeader = () => {
                             }}
                             image="https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/her.png"
                         />
-                        <Button variant="contained" sx={ButtonStyles}>
+                        <Button
+                            onClick={redirectToFemalePage}
+                            variant="contained"
+                            sx={ButtonStyles}
+                        >
                             For Her
                         </Button>
                     </Card>
@@ -62,7 +78,11 @@ const BannerHeader = () => {
                             }}
                             image="https://themewagon.github.io/majestic-2/v1.0.0/assets/img/gallery/him.png"
                         />
-                        <Button variant="contained" sx={ButtonStyles}>
+                        <Button
+                            onClick={redirectToMenPage}
+                            variant="contained"
+                            sx={ButtonStyles}
+                        >
                             For Him
                         </Button>
                     </Card>

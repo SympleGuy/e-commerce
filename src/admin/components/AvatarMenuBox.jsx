@@ -3,6 +3,10 @@ import { PersonAdd, Settings, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { LinkStyle } from "./shared/GlobalData";
 const AvatarMenuBox = ({ anchorEl, openMenu, handleClose }) => {
+    const handleOnClick = (event) => {
+        localStorage.clear();
+    };
+
     return (
         <Menu
             anchorEl={anchorEl}
@@ -39,26 +43,7 @@ const AvatarMenuBox = ({ anchorEl, openMenu, handleClose }) => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-            <MenuItem>
-                <Avatar /> Profile
-            </MenuItem>
-            <MenuItem>
-                <Avatar /> My account
-            </MenuItem>
-            <Divider />
-            <MenuItem>
-                <ListItemIcon>
-                    <PersonAdd fontSize="small" />
-                </ListItemIcon>
-                Add another account
-            </MenuItem>
-            <MenuItem>
-                <ListItemIcon>
-                    <Settings fontSize="small" />
-                </ListItemIcon>
-                Settings
-            </MenuItem>
-            <Link to="/login" style={LinkStyle}>
+            <Link to="/login" style={LinkStyle} onClick={handleOnClick}>
                 <MenuItem>
                     <ListItemIcon>
                         <Logout fontSize="small" />

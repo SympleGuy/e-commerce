@@ -15,50 +15,47 @@ import {
 import { useState, useEffect } from "react";
 import {
     getDetailProduct,
-    getDetailProductColor
+    getDetailProductColor,
+    getDetailImage,
+    getDetailSize
 } from "../../../services/apiService";
 import { Stack } from "@mui/system";
+import ProductCarousel from "./ProductCarousel";
+import ProductSizeList from "./ProductSizeList";
 
 const ProductDetail = () => {
     const [product, setProduct] = useState({});
-    const [color, setColor] = useState([]);
-    const [size, setSize] = useState([]);
-
+    const [color, setColor] = useState("");
     const { productId } = useParams();
-    // useEffect( () => {
-    //     fetchDetail();
-
-    // }, [productId]);
-
-    // const fetchDetail = async () => {
-    //     try {
-    //         const result = await getDetailProduct(productId);
-    //         const resultColor = await getDetailProductColor(productId);
-    //         setProduct(result.data);
-    //         setColor(resultColor.data);
-    //     } catch (error) {
-    //         console.log("Failed to fetch product", error);
-    //     }
-    // };
-
     useEffect(() => {
-        (async () => {
-            try {
-                const result = await getDetailProduct(productId);
-                const resultColor = await getDetailProductColor(productId);
-                setProduct(result.data);
-                setColor(resultColor.data);
-            } catch (error) {
-                console.log("failed", error);
-            }
-        })();
+        fetchDetail();
     }, [productId]);
+
+    const fetchDetail = async () => {
+        try {
+            const result = await getDetailProduct(productId);
+            setProduct(result.data);
+        } catch (error) {
+            console.log("Failed to fetch product", error);
+        }
+    };
+    const colorMap = [];
+
+    for (var key in product.colorList) {
+        if (product.colorList.hasOwnProperty(key)) {
+            colorMap.push((product.colorList[key] += ""));
+        }
+    }
 
     return (
         <Container maxWidth="xl">
             <CssBaseline />
             <Box display="flex" justifyContent="space-between">
-                <Card>aaaaaa</Card>
+                <ProductCarousel
+                    product={product}
+                    productId={productId}
+                    color={color}
+                />
                 <Stack spacing={2} p={5} maxWidth={500}>
                     <Typography
                         component="h1"
@@ -74,17 +71,20 @@ const ProductDetail = () => {
                         fontSize={32}
                         fontWeight={700}
                     >
-                        {product.price}
+                        {product.price} VND
                     </Typography>
-                    <Typography>{product.content}</Typography>
+                    <Typography>{product.description}</Typography>
                     <Divider
                         sx={{ bgcolor: "#000", borderBottomWidth: "2px" }}
                     />
+
                     <FormControl>
                         <FormLabel>Color: </FormLabel>
-
-                        <RadioGroup defaultValue={color[0]} row>
-                            {color.map((color) => (
+                        <RadioGroup
+                            row
+                            onChange={(e) => setColor(e.target.value)}
+                        >
+                            {colorMap.map((color) => (
                                 <FormControlLabel
                                     key={color}
                                     value={color}
@@ -94,10 +94,8 @@ const ProductDetail = () => {
                             ))}
                         </RadioGroup>
                     </FormControl>
-                    <FormControl>
-                        <FormLabel>Size: </FormLabel>
-                        <RadioGroup defaultValue row></RadioGroup>
-                    </FormControl>
+
+                    <ProductSizeList productId={productId} color={color} />
                 </Stack>
             </Box>
         </Container>

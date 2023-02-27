@@ -1,21 +1,60 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography, ButtonGroup, Button } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import LockIcon from "@mui/icons-material/Lock";
 import SecurityIcon from "@mui/icons-material/Security";
+import InfoIcon from "@mui/icons-material/Info";
+import DeleteIcon from "@mui/icons-material/Delete";
+import UpgradeIcon from "@mui/icons-material/Upgrade";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
+
 export const productCol = [
     { field: "id", headerName: "ID" },
     {
-        field: "name",
-        headerName: "Name",
+        field: "title",
+        headerName: "Title",
         flex: 1
+    },
+    { field: "price", headerName: "Price" },
+    { field: "gender", headerName: "Gender" },
+    {
+        field: "thumbnailLink",
+        headerName: "Thumbnail",
+        renderCell: ({ row: { thumbnailLink } }) => {
+            return (
+                <img
+                    src={thumbnailLink}
+                    alt={thumbnailLink}
+                    style={{
+                        width: "50px",
+                        height: "50px"
+                        // padding: "8px 10px"
+                    }}
+                />
+            );
+        }
     },
     {
-        field: "category",
-        headerName: "Category",
-        flex: 1
-    },
-    { field: "brand", headerName: "Brand", flex: 1 },
-    { field: "price", headerName: "Price", flex: 1 }
+        headerName: "Action",
+        flex: 1,
+        renderCell: ({ row: { action } }) => {
+            return (
+                <Stack spacing="1px" direction="row">
+                    <Button>
+                        <UpgradeIcon />
+                    </Button>
+                    <Button>
+                        <DeleteIcon />
+                    </Button>
+                    <Button>
+                        <InfoIcon />
+                    </Button>
+                    <Button>
+                        <ColorLensIcon />
+                    </Button>
+                </Stack>
+            );
+        }
+    }
 ];
 export const customerCol = [
     { field: "id", headerName: "ID" },

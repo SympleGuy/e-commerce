@@ -28,6 +28,7 @@ const AddAttribute = ({ closeModal }) => {
                             label="Stock"
                             variant="filled"
                             type="number"
+                            minRows={0}
                         />
                     </Grid>
                 </Grid>

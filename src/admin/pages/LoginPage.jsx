@@ -2,11 +2,13 @@ import * as React from "react";
 import { CssBaseline, Box, TextField, Typography, Button } from "@mui/material";
 import { authen } from "../../services/apiService";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
     const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    const navigate = useNavigate();
     const data = {
         username: userName,
         password: password
@@ -21,11 +23,15 @@ const LoginPage = () => {
                 "Content-Type": "application/json"
             }
         });
+        console.log(res.data);
 
-        localStorage.setItem(
-            "accessToken",
-            res.data.tokenType + " " + res.data.accessToken
-        );
+        if (res.status === 200) {
+            navigate("/admin");
+            localStorage.setItem(
+                "accessToken",
+                res.data.tokenType + " " + res.data.accessToken
+            );
+        }
     };
 
     const handleOnChangeUserName = (event) => {
@@ -76,13 +82,7 @@ const LoginPage = () => {
                             onChange={handleOnChangePassword}
                         />
                     </Box>
-                    <Button
-                        color="error"
-                        variant="contained"
-                        type="submit"
-                        onClick={handleOnSubmit}
-                        // sx={{ mt: "10", borderRadius: "10" }}
-                    >
+                    <Button color="error" variant="contained" type="submit">
                         Login
                     </Button>
                 </Box>

@@ -64,12 +64,12 @@ export default function ClientHome() {
                 <TabCategory />
                 <ShareButton>View All</ShareButton>
             </Banner> */}
-            <Banner>
+            {/* <Banner>
                 <BannerTitle>Best Sellers</BannerTitle>
                 <Carousel swipeable={false} infinite responsive={responsive}>
                     {bestSellersProduct}
                 </Carousel>
-            </Banner>
+            </Banner> */}
         </Container>
     );
 }

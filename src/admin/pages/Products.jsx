@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { GlobalData } from "../components/shared/GlobalData";
 import { useOutletContext } from "react-router-dom";
@@ -11,6 +11,7 @@ import TableHeader from "../components/shared/TableHeader";
 import ButtonComp from "../components/shared/ButtonComp";
 import ModalComp from "../components/shared/ModalComp";
 import AddProduct from "../components/form/AddProduct";
+import { getFemaleProducts, getMaleProducts } from "../../services/apiService";
 const drawerWidth = GlobalData.sidebarWidth;
 
 const Products = styled("products", {
@@ -42,6 +43,24 @@ const ProductsRoute = ({ open }) => {
     const [openModal, setOpenModal] = useState(false);
     const handleOpen = () => setOpenModal(true);
     const handleClose = () => setOpenModal(false);
+
+    const [maleProduct, setMaleProduct] = useState([]);
+    const [femaleProduct, setFemaleProduct] = useState([]);
+
+    useEffect(() => {
+        getProduct();
+    }, [maleProduct.id]);
+
+    const getProduct = async () => {
+        const res = await getMaleProducts();
+        const respone = await getFemaleProducts();
+        setMaleProduct(res.data.content);
+        setFemaleProduct(respone.data.content);
+
+        // console.log(res.data.content);
+    };
+    const allProduct = [...maleProduct, ...femaleProduct];
+
     open = useOutletContext();
     return (
         <Products open={open}>
@@ -54,7 +73,7 @@ const ProductsRoute = ({ open }) => {
             >
                 <TableHeader
                     title={"Products List"}
-                    subtitle={"This is a product table"}
+                    subtitle={"Add/Update Product"}
                 />
                 <ButtonComp onCLickEv={handleOpen} variant="contained" onClick>
                     Add Product
@@ -67,7 +86,7 @@ const ProductsRoute = ({ open }) => {
             >
                 <AddProduct closeModal={handleClose} />
             </ModalComp>
-            <TableComp col={productCol} rowData={productData} />
+            <TableComp col={productCol} rowData={allProduct} />
         </Products>
     );
 };

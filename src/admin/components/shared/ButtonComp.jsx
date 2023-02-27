@@ -1,8 +1,14 @@
 import { Button } from "@mui/material";
 
-export default function ButtonComp({ children, variant, onCLickEv, color }) {
+export default function ButtonComp({
+    children,
+    variant,
+    onCLickEv,
+    color,
+    type
+}) {
     return (
-        <Button color={color} onClick={onCLickEv} variant={variant}>
+        <Button type={type} color={color} onClick={onCLickEv} variant={variant}>
             {children}
         </Button>
     );

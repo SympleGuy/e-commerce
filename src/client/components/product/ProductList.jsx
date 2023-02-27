@@ -1,38 +1,54 @@
-import { Box, Typography } from "@mui/material";
-import * as react from "react";
-import { getMaleProducts } from "../../../services/apiService";
+import { Box, Typography, Autocomplete, TextField } from "@mui/material";
+import { useState } from "react";
 import ProductCard from "./ProductCard";
 
-const ProductList = () => {
-    const [products, setProducts] = react.useState([]);
-
-    react.useEffect(() => {
-        fetchListProducts();
-    }, []);
-
-    const fetchListProducts = async () => {
-        await getMaleProducts().then((res) => {
-            setProducts(res.data.content);
-        });
-    };
-
+const ProductList = ({ product, title }) => {
+    // const [products, setProducts] = useState([product]);
+    const [id, setId] = useState();
     return (
         <Box display="flex" pt={10}>
-            <Box pl="10px" minWidth="250px" minHeight="500px">
-                <Typography variant="h2" fontWeight={700} fontSize={32}>
-                    Men
+            <Box
+                pl="10px"
+                minWidth="250px"
+                minHeight="500px"
+                display="flex"
+                flexDirection="column"
+            >
+                <Typography
+                    variant="h2"
+                    fontWeight={700}
+                    fontSize={32}
+                    gutterBottom
+                >
+                    {title}
                 </Typography>
+                <Autocomplete
+                    freeSolo
+                    id="free-solo-2-demo"
+                    disableClearable
+                    options={product.map((option) => option.title)}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Search input"
+                            InputProps={{
+                                ...params.InputProps,
+                                type: "search"
+                            }}
+                        />
+                    )}
+                />
             </Box>
             <Box
                 flexGrow={1}
                 display="flex"
-                gap="20px 15px"
+                gap="50px 15px"
                 flexWrap="wrap"
-                justifyContent="flex-end"
-                pr={2}
+                justifyContent="left"
+                pl={10}
             >
-                {products.map((product) => (
-                    <ProductCard key={product.id} item={product} />
+                {product.map((item) => (
+                    <ProductCard key={item.id} item={item} />
                 ))}
             </Box>
         </Box>

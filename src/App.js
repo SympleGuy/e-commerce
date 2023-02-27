@@ -10,12 +10,15 @@ import MenPage from "./client/pages/MenPage";
 import WomenPage from "./client/pages/WomenPage";
 import LoginPage from "./admin/pages/LoginPage";
 import ProductDetail from "./client/components/product/ProductDetail";
+import Cart from "./client/components/Cart/Cart";
 function App() {
+    const token = localStorage.getItem("accessToken") === null ? false : true;
+
     return (
         <div className="App">
             <Router>
                 <Routes>
-                    <Route element={<AdminPage />}>
+                    <Route element={<AdminPage token={token} />}>
                         <Route element={<Home />} path="/admin" />
                         <Route element={<Products />} path="/products"></Route>
                         <Route element={<Customers />} path="/customers" />
@@ -26,9 +29,10 @@ function App() {
                         <Route element={<MenPage />} path="/men"></Route>
                         <Route
                             element={<ProductDetail />}
-                            path="/men/products/:productId"
+                            path="/products/:productId"
                         />
                         <Route element={<WomenPage />} path="/women" />
+                        <Route element={<Cart />} path="cart" />
                     </Route>
                     <Route element={<LoginPage />} path="/login" />
                 </Routes>
